@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;  // ← TAMBAHKAN INI
 use App\Http\Controllers\ApplicantController;
 use App\Models\User;
 use App\Models\Applicant;
@@ -95,4 +96,29 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/applicants/{applicant}', [ApplicantController::class, 'show'])->name('admin.applicant.show');
     Route::patch('/admin/applicants/{applicant}/status', [ApplicantController::class, 'updateStatus'])->name('admin.applicant.status');
     Route::patch('/admin/applicants/{applicant}/payment', [ApplicantController::class, 'verifyPayment'])->name('admin.applicant.payment');
+});
+
+// ─── TEST ROUTE (Hapus setelah selesai debugging) ───
+Route::get('/db-test', function() {
+    try {
+        DB::connection()->getPdo();
+        
+        $userCount = User::count();
+        $applicantCount = Applicant::count();
+        
+        return response()->json([
+            'status' => 'success',
+            'database_connected' => true,
+            'user_count' => $userCount,
+            'applicant_count' => $applicantCount,
+            'database' => DB::connection()->getDatabaseName(),
+            'host' => config('database.connections.mysql.host'),
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage(),
+            'trace' => $e->getTraceAsString()
+        ], 500);
+    }
 });
