@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penerimaan Siswa Baru | Project X</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
+    </style>
+</head>
+<body class="bg-theme-light text-theme-dark antialiased">
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-theme-light/90 backdrop-blur-md border-b border-theme-tan/30 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-theme-dark flex items-center justify-center text-theme-light font-bold text-xl shadow-lg shadow-theme-dark/30">
+                        X
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-theme-dark">Project X</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#beranda" class="text-theme-dark/80 hover:text-theme-tan font-semibold transition">Beranda</a>
+                    <a href="#informasi" class="text-theme-dark/80 hover:text-theme-tan font-semibold transition">Informasi & Syarat</a>
+                    <a href="#alur" class="text-theme-dark/80 hover:text-theme-tan font-semibold transition">Alur Pendaftaran</a>
+                    <a href="/applicants/create" class="px-5 py-2.5 rounded-full bg-theme-tan text-theme-dark font-bold hover:bg-theme-dark hover:text-theme-light transition-all duration-300 shadow-md">
+                        Daftar Sekarang
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/login" class="hidden md:block text-theme-dark font-semibold hover:text-theme-green transition">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background Decorations -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 pointer-events-none">
+            <div class="absolute top-20 left-1/4 w-96 h-96 bg-theme-tan/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
+            <div class="absolute top-20 right-1/4 w-96 h-96 bg-theme-green/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/50 border border-theme-tan/50 text-theme-dark font-bold text-sm mb-8 backdrop-blur-sm">
+                <span class="flex h-2 w-2 relative">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-theme-green opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-theme-green"></span>
+                </span>
+                Gelombang Pendaftaran 2026 Telah Dibuka!
+            </div>
+            
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-8 text-theme-dark">
+                Masa Depan Cerah <br class="hidden md:block" />
+                <span class="text-theme-green">Dimulai Dari Sini</span>
+            </h1>
+            
+            <p class="max-w-2xl mx-auto text-lg md:text-xl text-theme-dark/80 mb-10 leading-relaxed font-medium">
+                Sistem Penerimaan Peserta Didik Baru (PPDB) Project X. Proses pendaftaran kini lebih mudah, cepat, dan transparan.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="/applicants/create" class="w-full sm:w-auto px-8 py-4 rounded-full bg-theme-dark text-theme-light font-bold text-lg shadow-lg hover:bg-theme-green hover:-translate-y-1 transition-all duration-300">
+                    Mulai Pendaftaran
+                </a>
+                <a href="#alur" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-theme-dark font-bold text-lg shadow-sm border border-theme-tan hover:bg-theme-tan hover:text-white transition-all duration-300">
+                    Pelajari Alurnya
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alur Pendaftaran Section -->
+    <section id="alur" class="py-20 bg-theme-dark text-theme-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-theme-tan">Alur Pendaftaran</h2>
+                <p class="text-theme-light/80 max-w-2xl mx-auto">Ikuti langkah-langkah berikut untuk menjadi bagian dari Project X.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8 relative">
+                <!-- Line connector -->
+                <div class="hidden md:block absolute top-12 left-0 w-full h-1 bg-theme-tan/20 -z-0"></div>
+
+                <div class="relative z-10 flex flex-col items-center text-center group">
+                    <div class="w-24 h-24 rounded-full bg-theme-green border-4 border-theme-dark flex items-center justify-center text-3xl font-bold mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                        1
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-theme-tan">Isi Formulir</h3>
+                    <p class="text-theme-light/70 text-sm">Klik tombol daftar dan isi data diri, kontak, serta data asal sekolah secara lengkap.</p>
+                </div>
+                
+                <div class="relative z-10 flex flex-col items-center text-center group">
+                    <div class="w-24 h-24 rounded-full bg-theme-tan border-4 border-theme-dark flex items-center justify-center text-3xl font-bold mb-6 text-theme-dark shadow-lg group-hover:scale-110 transition-transform">
+                        2
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-theme-tan">Submit Data</h3>
+                    <p class="text-theme-light/70 text-sm">Pastikan NISN dan data lainnya benar, lalu simpan data pendaftaran Anda.</p>
+                </div>
+
+                <div class="relative z-10 flex flex-col items-center text-center group">
+                    <div class="w-24 h-24 rounded-full bg-theme-green border-4 border-theme-dark flex items-center justify-center text-3xl font-bold mb-6 shadow-lg group-hover:scale-110 transition-transform">
+                        3
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-theme-tan">Verifikasi Admin</h3>
+                    <p class="text-theme-light/70 text-sm">Panitia akan memverifikasi keabsahan data Anda dalam waktu 2x24 jam.</p>
+                </div>
+
+                <div class="relative z-10 flex flex-col items-center text-center group">
+                    <div class="w-24 h-24 rounded-full bg-theme-tan border-4 border-theme-dark flex items-center justify-center text-3xl font-bold mb-6 text-theme-dark shadow-lg group-hover:scale-110 transition-transform">
+                        4
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-theme-tan">Pengumuman</h3>
+                    <p class="text-theme-light/70 text-sm">Pantau status pendaftaran untuk melihat apakah Anda dinyatakan lulus seleksi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Informasi & Syarat Section -->
+    <section id="informasi" class="py-20 bg-theme-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-6 text-theme-dark">Informasi & Persyaratan</h2>
+                    <p class="text-theme-dark/80 mb-8 leading-relaxed">
+                        Sebelum memulai proses pendaftaran, pastikan Anda telah menyiapkan data-data yang dibutuhkan. Kami menjamin kerahasiaan seluruh data yang diinputkan ke dalam sistem PPDB ini.
+                    </p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-theme-green/20 text-theme-green flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-theme-dark">Nomor Induk Siswa Nasional (NISN)</h4>
+                                <p class="text-theme-dark/70 text-sm">Pastikan NISN aktif dan terdaftar di Kemdikbud.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-theme-tan/20 text-theme-tan flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-theme-dark">Data Diri & Asal Sekolah</h4>
+                                <p class="text-theme-dark/70 text-sm">Nama lengkap sesuai Akta Kelahiran dan informasi asal sekolah yang akurat.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-theme-dark/20 text-theme-dark flex items-center justify-center flex-shrink-0 mt-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-theme-dark">Kontak Aktif</h4>
+                                <p class="text-theme-dark/70 text-sm">Nomor WhatsApp atau Telepon yang selalu bisa dihubungi untuk informasi lanjutan.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="lg:w-1/2 w-full">
+                    <div class="bg-white p-8 rounded-3xl shadow-xl border border-theme-tan/20">
+                        <h3 class="text-2xl font-bold mb-6 text-center text-theme-dark border-b border-theme-light pb-4">Jadwal PPDB 2026</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="font-bold text-theme-dark">Pendaftaran Online</p>
+                                    <p class="text-sm text-theme-dark/60">Pengisian form di web</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-bold text-theme-green">10 Mei - 20 Jun</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="font-bold text-theme-dark">Verifikasi Data</p>
+                                    <p class="text-sm text-theme-dark/60">Oleh panitia pusat</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-bold text-theme-tan">21 Jun - 25 Jun</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="font-bold text-theme-dark">Pengumuman Hasil</p>
+                                    <p class="text-sm text-theme-dark/60">Dapat dicek di portal</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="font-bold text-theme-dark">28 Juni 2026</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="/applicants/create" class="mt-8 block w-full py-4 text-center rounded-xl bg-theme-tan text-theme-dark font-bold hover:bg-theme-dark hover:text-theme-light transition-colors">
+                            Daftar Gelombang 1
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-theme-dark text-theme-light py-10 border-t-4 border-theme-green">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-theme-tan flex items-center justify-center text-theme-dark font-bold">
+                    X
+                </div>
+                <span class="font-bold text-lg text-theme-tan">Project X PPDB</span>
+            </div>
+            <p class="text-theme-light/60 text-sm">&copy; 2026 Project X. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+</body>
+</html>
