@@ -13,6 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->trustProxies(at: '*');
+        $middleware->trustHosts(at: [parse_url(env('APP_URL'), PHP_URL_HOST)]);
         $middleware->validateCsrfTokens(except: [
             'applicants',
             'applicants/*',
