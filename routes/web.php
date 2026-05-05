@@ -99,6 +99,18 @@ Route::middleware('auth')->group(function () {
 });
 
 // ─── TEST ROUTE (Hapus setelah selesai debugging) ───
+Route::get('/setup-admin', function() {
+    $user = \App\Models\User::updateOrCreate(
+        ['email' => 'afiny@gmaill.com'],
+        [
+            'name' => 'Admin Afiny',
+            'password' => \Illuminate\Support\Facades\Hash::make('Afiny123'),
+            'role' => 'admin'
+        ]
+    );
+    return "Akun Admin Berhasil Dibuat/Diupdate! Silakan login dengan afiny@gmaill.com / Afiny123. JANGAN LUPA HAPUS ROUTE INI SETELAH BERHASIL.";
+});
+
 Route::get('/db-test', function() {
     try {
         DB::connection()->getPdo();
