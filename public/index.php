@@ -1,7 +1,5 @@
 <?php
 
-error_log("DEBUG: Request received: " . ($_SERVER['REQUEST_METHOD'] ?? 'UNKNOWN') . " " . ($_SERVER['REQUEST_URI'] ?? 'UNKNOWN'));
-
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 
