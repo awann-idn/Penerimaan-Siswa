@@ -35,44 +35,25 @@
     @endif
 
     @if($applicant)
-    {{-- CASE 1: Sudah Ada Keputusan (Diterima/Ditolak) --}}
-    @if(in_array($applicant->status, ['accepted', 'rejected']))
-    <div class="bg-white rounded-3xl shadow-xl border border-theme-green/10 overflow-hidden mb-8">
-        <div class="p-8 md:p-12 text-center">
-            <div class="w-20 h-20 rounded-full {{ $applicant->status==='accepted' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600' }} flex items-center justify-center mx-auto mb-6">
-                <span class="material-symbols-outlined icon-filled" style="font-size:48px">
-                    {{ $applicant->status==='accepted' ? 'celebration' : 'sentiment_very_dissatisfied' }}
-                </span>
-            </div>
-            
-            <h2 class="text-3xl font-extrabold mb-2">
-                {{ $applicant->status==='accepted' ? 'Selamat! Anda Dinyatakan Lulus' : 'Mohon Maaf, Anda Belum Lulus' }}
-            </h2>
-            <p class="text-theme-dark/60 mb-8 max-w-lg mx-auto">
-                {{ $applicant->status==='accepted' 
-                    ? 'Hasil seleksi administrasi dan akademik menyatakan Anda memenuhi syarat untuk bergabung dengan SMA Unggulan AFINY.' 
-                    : 'Terima kasih telah berpartisipasi. Jangan berkecil hati, tetap semangat dan teruslah mencoba di kesempatan berikutnya.' }}
-            </p>
-
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="{{ route('siswa.kelulusan') }}" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl {{ $applicant->status==='accepted' ? 'bg-green-600' : 'bg-theme-dark' }} text-white font-bold text-lg hover:opacity-90 transition shadow-lg">
-                    <span class="material-symbols-outlined">assignment</span> Lihat Surat Kelulusan
-                </a>
-            </div>
-        </div>
-    </div>
-    @endif
-
-    {{-- CASE 2: Masih Pending (Menunggu Verifikasi) --}}
-    @if($applicant->status === 'pending')
+    {{-- Status Card --}}
     <div class="bg-white rounded-2xl shadow-md border border-theme-green/10 p-6 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
             <p class="text-xs text-theme-dark/50 font-semibold uppercase mb-2">Status Pendaftaran</p>
+            @if($applicant->status==='pending')
             <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-100 text-yellow-800 font-bold text-sm">
                 <span class="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></span>Menunggu Verifikasi
             </span>
+            @else
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 text-green-800 font-bold text-sm">
+                <span class="material-symbols-outlined icon-filled text-green-600" style="font-size:18px">notifications_active</span>Hasil Seleksi Tersedia
+            </span>
+            @endif
         </div>
-        <p class="text-sm text-theme-dark/60 italic font-medium">Data Anda sedang ditinjau oleh panitia PPDB.</p>
+        @if(in_array($applicant->status, ['accepted','rejected']))
+        <a href="{{ route('siswa.kelulusan') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl {{ $applicant->status==='accepted' ? 'bg-green-600 hover:bg-green-700' : 'bg-theme-dark hover:bg-theme-green' }} text-white font-bold text-sm transition shadow-md">
+            <span class="material-symbols-outlined" style="font-size:18px">assignment</span>Cek Kelulusan
+        </a>
+        @endif
     </div>
 
     @if($applicant->admin_notes)
@@ -84,27 +65,40 @@
     </div>
     @endif
 
+    {{-- Data Ringkasan --}}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div class="bg-white rounded-2xl shadow-md border border-theme-green/10 p-6">
             <h3 class="font-bold mb-4 text-theme-dark border-b pb-2 flex items-center gap-2">
-                <span class="material-symbols-outlined" style="font-size:18px">person</span>Ringkasan Data
+                <span class="material-symbols-outlined" style="font-size:18px">person</span>Data Pribadi
             </h3>
             <div class="space-y-2 text-sm">
                 <div class="flex justify-between"><span class="text-theme-dark/50">Nama</span><span class="font-bold">{{ $applicant->full_name }}</span></div>
+                <div class="flex justify-between"><span class="text-theme-dark/50">NISN</span><span class="font-bold">{{ $applicant->nisn }}</span></div>
+                <div class="flex justify-between"><span class="text-theme-dark/50">NIK</span><span class="font-bold">{{ $applicant->nik }}</span></div>
+                <div class="flex justify-between"><span class="text-theme-dark/50">Jenis Kelamin</span><span class="font-bold">{{ $applicant->gender==='L'?'Laki-laki':'Perempuan' }}</span></div>
+                <div class="flex justify-between"><span class="text-theme-dark/50">TTL</span><span class="font-bold">{{ $applicant->birth_place }}, {{ $applicant->birth_date->format('d/m/Y') }}</span></div>
                 <div class="flex justify-between"><span class="text-theme-dark/50">Jalur</span><span class="font-bold uppercase">{{ $applicant->jalur_pendaftaran }}</span></div>
                 <div class="flex justify-between"><span class="text-theme-dark/50">Jurusan</span><span class="font-bold">{{ $applicant->jurusan_pilihan }}</span></div>
             </div>
         </div>
         <div class="bg-white rounded-2xl shadow-md border border-theme-green/10 p-6">
             <h3 class="font-bold mb-4 text-theme-dark border-b pb-2 flex items-center gap-2">
-                <span class="material-symbols-outlined" style="font-size:18px">folder_open</span>Status Dokumen
+                <span class="material-symbols-outlined" style="font-size:18px">folder_open</span>Dokumen Diunggah
             </h3>
-            <div class="text-sm text-green-600 font-bold flex items-center gap-2">
-                <span class="material-symbols-outlined icon-filled">verified</span> Semua Dokumen Terupload
+            <div class="space-y-2 text-sm">
+                @foreach(['pas_foto'=>'Pas Foto','ijazah_skl'=>'Ijazah/SKL','kartu_keluarga'=>'Kartu Keluarga','akte_kelahiran'=>'Akte Kelahiran','kartu_pelajar'=>'Kartu Pelajar','sertifikat_prestasi'=>'Sertifikat'] as $f=>$l)
+                <div class="flex justify-between items-center">
+                    <span class="text-theme-dark/50">{{ $l }}</span>
+                    @if($applicant->$f)
+                    <a href="{{ asset('storage/'.$applicant->$f) }}" target="_blank" class="text-theme-green font-bold hover:underline text-xs flex items-center gap-1">
+                        <span class="material-symbols-outlined icon-filled" style="font-size:14px">check_circle</span>Lihat
+                    </a>
+                    @else<span class="text-slate-400 text-xs">—</span>@endif
+                </div>
+                @endforeach
             </div>
         </div>
     </div>
-    @endif
 
     {{-- ACCEPTED: Info Daftar Ulang & Pembayaran --}}
     @if($applicant->status==='accepted')
