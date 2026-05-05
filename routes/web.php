@@ -13,9 +13,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-// ─── Auth (Guest only) ─────────────────────────────
+// ─── Auth (Public Login) ─────────────────────────────
+Route::get('/login', fn() => view('auth.login'))->name('login');
+
 Route::middleware('guest')->group(function () {
-    Route::get('/login', fn() => view('auth.login'))->name('login');
+    // Route::get('/login', fn() => view('auth.login'))->name('login');
 
     Route::post('/login', function () {
         $credentials = request()->validate([

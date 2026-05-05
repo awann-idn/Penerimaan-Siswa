@@ -35,8 +35,16 @@
                     <a href="#informasi" class="text-theme-dark/80 hover:text-theme-green font-semibold transition">Syarat</a>
                     <a href="/register" class="px-5 py-2.5 rounded-full bg-theme-dark text-theme-light font-bold hover:bg-theme-green transition-all duration-300 shadow-md">Daftar Sekarang</a>
                 </div>
-                <div class="flex items-center">
-                    <a href="/login" class="text-theme-dark font-semibold hover:text-theme-green transition">Login</a>
+                <div class="flex items-center gap-4">
+                    @auth
+                        <a href="{{ auth()->user()->isAdmin() ? route('admin.dashboard') : route('siswa.dashboard') }}" class="px-5 py-2.5 rounded-full bg-theme-green text-theme-light font-bold shadow-md">Dashboard</a>
+                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit" class="text-theme-dark/60 font-semibold hover:text-red-500 transition">Logout</button>
+                        </form>
+                    @else
+                        <a href="/login" class="text-theme-dark font-semibold hover:text-theme-green transition">Login</a>
+                    @endauth
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->trustProxies(at: '*');
+        $middleware->trustHosts(at: []); // Matikan trust hosts untuk sementara agar tidak memblokir Railway
         $middleware->validateCsrfTokens(except: [
             'applicants',
             'applicants/*',
