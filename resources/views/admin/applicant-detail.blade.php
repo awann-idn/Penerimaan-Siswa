@@ -42,7 +42,17 @@
             </div>
             <div class="p-4">
                 @if($applicant->pas_foto)
-                    <img src="{{ asset('storage/'.$applicant->pas_foto) }}" class="w-full rounded-xl object-cover">
+                    @php
+                        $ext = strtolower(pathinfo($applicant->pas_foto, PATHINFO_EXTENSION));
+                    @endphp
+                    @if($ext === 'pdf')
+                        <a href="{{ asset('storage/'.$applicant->pas_foto) }}" target="_blank" class="py-12 flex flex-col items-center gap-2 text-theme-green">
+                            <span class="material-symbols-outlined icon-filled" style="font-size:48px">description</span>
+                            <p class="text-sm font-bold">Buka Foto (PDF)</p>
+                        </a>
+                    @else
+                        <img src="{{ asset('storage/'.$applicant->pas_foto) }}" class="w-full rounded-xl object-cover" onerror="this.src='https://placehold.co/400x500?text=Error+Loading+Image';">
+                    @endif
                 @else
                     <div class="py-12 flex flex-col items-center gap-2 text-slate-400">
                         <span class="material-symbols-outlined" style="font-size:40px">hide_image</span>
@@ -106,12 +116,15 @@
             </div>
             <div class="p-4">
                 <a href="{{ asset('storage/'.$applicant->bukti_pembayaran) }}" target="_blank" class="block mb-3">
-                    @if(str_ends_with($applicant->bukti_pembayaran, '.pdf'))
-                    <p class="text-center py-4 text-theme-green font-bold flex items-center justify-center gap-2">
+                    @php
+                        $ext = strtolower(pathinfo($applicant->bukti_pembayaran, PATHINFO_EXTENSION));
+                    @endphp
+                    @if($ext === 'pdf')
+                    <p class="text-center py-4 text-theme-green font-bold flex items-center justify-center gap-2 border-2 border-dashed border-theme-green/20 rounded-xl">
                         <span class="material-symbols-outlined icon-filled">description</span>Buka Bukti Bayar (PDF)
                     </p>
                     @else
-                    <img src="{{ asset('storage/'.$applicant->bukti_pembayaran) }}" class="w-full rounded-xl">
+                    <img src="{{ asset('storage/'.$applicant->bukti_pembayaran) }}" class="w-full rounded-xl shadow-sm" onerror="this.src='https://placehold.co/400x300?text=Error+Loading+File';">
                     @endif
                 </a>
                 <form action="{{ route('admin.applicant.payment', $applicant) }}" method="POST">
@@ -215,14 +228,19 @@
                     <div class="bg-slate-50 px-3 py-1 border-b text-xs font-bold text-theme-dark/50">{{ $l }}</div>
                     <div class="p-3">
                         @if($applicant->$f)
-                            @if(str_ends_with($applicant->$f, '.pdf'))
+                            @php
+                                $ext = strtolower(pathinfo($applicant->$f, PATHINFO_EXTENSION));
+                                $isPdf = $ext === 'pdf';
+                            @endphp
+
+                            @if($isPdf)
                             <a href="{{ asset('storage/'.$applicant->$f) }}" target="_blank" class="flex flex-col items-center py-4 text-theme-green font-bold hover:text-theme-dark transition gap-1">
                                 <span class="material-symbols-outlined icon-filled" style="font-size:32px">description</span>
                                 <span class="text-xs">Buka PDF</span>
                             </a>
                             @else
                             <a href="{{ asset('storage/'.$applicant->$f) }}" target="_blank">
-                                <img src="{{ asset('storage/'.$applicant->$f) }}" class="w-full h-24 object-cover rounded-lg hover:opacity-90 transition">
+                                <img src="{{ asset('storage/'.$applicant->$f) }}" class="w-full h-24 object-cover rounded-lg hover:opacity-90 transition" onerror="this.onerror=null;this.src='https://placehold.co/400x300?text=File+Error';">
                             </a>
                             @endif
                         @else
